@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ytsapp/screen/signupscreen.dart';
 import 'package:ytsapp/screen/splashscreen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +13,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var usernameV = "Akuma";
+  var emailV = "akuma11@gmail.com";
+  @override
+  void initState() {
+    super.initState();
+    getValue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Container(
                                 child: Text(
-                                  "Username",
+                                  usernameV,
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w700,
@@ -69,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Container(
                                 child: Text(
-                                  "Email",
+                                  emailV,
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontWeight: FontWeight.w300,
@@ -114,7 +124,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      print(usernameV);
+                    },
                     icon: Icon(
                       Icons.favorite_outline_outlined,
                       color: Colors.red,
@@ -244,5 +256,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
     );
+  }
+
+  void getValue() async {
+    var sharedpref = await SharedPreferences.getInstance();
+    var fmV = sharedpref.getString(SignUpScreenState.USERNAMEKEY.toString());
+    var emV = sharedpref.getString(SignUpScreenState.EMAILKEY.toString());
+    usernameV = fmV ?? "john";
+    emailV = emV ?? "235@email.com";
+    setState(() {});
   }
 }

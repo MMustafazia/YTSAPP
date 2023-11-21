@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ytsapp/screen/categoryscreen.dart';
 import 'package:ytsapp/screen/homepage.dart';
 import 'package:ytsapp/screen/profilescreen.dart';
-import 'package:ytsapp/screen/search.dart';
-import 'package:ytsapp/screen/test.dart';
 
 class Navbar extends StatefulWidget {
   @override

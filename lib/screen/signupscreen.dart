@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ytsapp/firebase/auth.dart';
 import 'package:ytsapp/screen/navbar.dart';
 import 'package:ytsapp/screen/signinscreen.dart';
@@ -9,12 +10,14 @@ class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignUpScreen> createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuthServices _auth = FirebaseAuthServices();
+  static const String USERNAMEKEY = "Username";
+  static const String EMAILKEY = "Email";
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -228,10 +231,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         child: TextButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState?.validate() ?? false) {
                               // Valid form, you can handle the email here.
                               print('Email: ${_emailController.text}');
+                              setvalue();
                               _signup();
                             }
                           },
@@ -311,10 +315,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
         textColor: Colors.white, // Text color of the toast
         fontSize: 16.0, // Font size
       );
+
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Navbar()));
     } else {
       print("Error Occured");
     }
+  }
+
+  void setvalue() async {
+    print(usernameController.text);
+    print(_emailController.text);
+    var pref = await SharedPreferences.getInstance();
+    var fullnameValue = usernameController.text.toString();
+    var emailValue = _emailController.text.toString();
+    pref.setString(USERNAMEKEY, fullnameValue);
+    pref.setString(EMAILKEY, emailValue);
   }
 }

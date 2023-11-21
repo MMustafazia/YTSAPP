@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ytsapp/screen/navbar.dart';
 import 'package:ytsapp/screen/signinscreen.dart';
 import 'package:ytsapp/screen/splashscreen.dart';
-import 'package:ytsapp/screen/test.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
-      ),
-      home: SplashScreen(),
+      ).copyWith(
+          progressIndicatorTheme:
+              ProgressIndicatorThemeData(circularTrackColor: Colors.red)),
+      home: Navbar(),
     );
   }
 }
