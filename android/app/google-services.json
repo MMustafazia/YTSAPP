@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "819299253962",
+    "project_id": "ytsapp-16804",
+    "storage_bucket": "ytsapp-16804.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819299253962:android:f16dd80b08ea4a3e0c7e33",
+        "android_client_info": {
+          "package_name": "com.example.ytsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnNwamqXDqXd-Z-Mb8lCRBimaAZr4cyKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
